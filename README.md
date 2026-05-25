@@ -183,7 +183,7 @@ pytest --headed
 
 ---
 
-# 📊 Allure Report
+# Allure Report
 
 ## Генерация Allure результатов
 
@@ -201,7 +201,7 @@ allure serve allure-results
 
 ---
 
-# 🧩 Архитектура тестов
+# Архитектура тестов
 
 Проект реализован с использованием паттерна Page Object Model (POM).
 
