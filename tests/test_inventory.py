@@ -21,12 +21,19 @@ def test_add_item_to_cart_and_remove(authorized_page):
     cart = CartPage(authorized_page)
     cart.check_cart_is_empty()
 
-def test_open_inventory_item(authorized_page):
+def test_sort_price_low_to_high(authorized_page):
     inventory = InventoryPage(authorized_page)
-    number = inventory.open_product_cart(Product.BACKPACK_NUMBER)
-    check_url = InventoryItemPage(authorized_page)
-    check_url.check_url(number)
+    inventory.sort_products("lohi")
+    actual_prices = inventory.get_all_prices()
+    exepected_prices = sorted(actual_prices)
+    assert exepected_prices == actual_prices
 
+def test_sort_price_high_to_low(authorized_page):
+    inventory = InventoryPage(authorized_page)
+    inventory.sort_products("hilo")
+    actual_prices = inventory.get_all_prices()
+    exepected_prices = sorted(actual_prices, reverse=True)
+    assert exepected_prices == actual_prices
 
 
 

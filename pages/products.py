@@ -8,8 +8,11 @@ class Product(BasePage):
     BOLT_T_SHIRT = "bolt-t-shirt"
     FLEECE_JACKET = "fleece-jacket"
 
-    """product_number"""
-    BACKPACK_NUMBER= "4"
-    BIKE_LIGHT_NUMBER = "0"
-    T_SHIRT_NUMBER = "1"
-    JACKET_NUMBER = "5"
+    """product_ID"""
+    BACKPACK_ID= "4"
+    BIKE_LIGHT_ID = "0"
+    T_SHIRT_ID = "1"
+    JACKET_ID = "5"
+
+    """Цена по id продукта"""
+    PRICE_BY_PRODUCT = '[data-test="inventory-item"]:has(a[id="item_{}_title_link"]) .inventory_item_price'
