@@ -17,11 +17,12 @@ class BasePage:
     def check_url(self, url):
         expect(self.page).to_have_url(url)
 
-    def expect(self, locator):
-        self.expect(locator)
+    def expect_element(self, locator):
+        return expect(self.page.locator(locator))
 
     def check_text(self, locator, text):
         expect(self.page.locator(locator)).to_have_text(text)
 
     def check_element_hidden(self, locator):
+        """Проверяет, что элемент отсутствует в DOM"""
         expect(self.page.locator(locator)).to_have_count(0)

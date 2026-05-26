@@ -1,4 +1,4 @@
-from playwright.sync_api import Page
+
 from pages.base import BasePage
 
 class LogoutPage(BasePage):

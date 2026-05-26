@@ -53,8 +53,9 @@ class InventoryPage(BasePage):
         prices  = self.page.locator(self.ITEM_PRICES).all_inner_texts()
         return [float(price.replace('$', ' ')) for price in prices]
 
-    """Метод выбора сортировки"""
+
     def sort_products(self, value):
+        """Метод выбора сортировки"""
         self.page.locator(self.PRODUCT_SORT).select_option(value) # az -От A до Z сортировка, ZA - от Z до A, lohi - цена от Low к High, hilo - цена от High к Low
 
     def get_price(self, product_id):
@@ -65,3 +66,7 @@ class InventoryPage(BasePage):
     def open_cart(self):
         self.click(self.CART)
         return CartPage(self.page)
+
+    def check_cart_is_empty(self):
+        """Проверяет, что корзина пуста (бейдж отсутствует)"""
+        self.check_element_hidden(self.CART_BADGE)

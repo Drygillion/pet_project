@@ -1,6 +1,6 @@
-from playwright.sync_api import expect
-
 from pages.base import BasePage
+from pages.inventory_page import InventoryPage
+
 
 class LoginPage(BasePage):
     USERNAME_INPUT = "[id='user-name']"
@@ -10,7 +10,8 @@ class LoginPage(BasePage):
     ERROR_MESSAGE_LOGIN = "[data-test='error']"
 
     def open(self,url):
-        self.page.goto(url,wait_until="domcontentloaded",timeout=60000)
+        self.page.goto(url, timeout=60000, wait_until="domcontentloaded")
+        self.page.locator('#user-name').wait_for(state="visible", timeout=30000)
 
 
 
@@ -18,6 +19,7 @@ class LoginPage(BasePage):
         self.fill(self.USERNAME_INPUT, username)
         self.fill(self.PASSWORD_INPUT, password)
         self.click(self.LOGIN_BUTTON)
+        return InventoryPage(self.page)
 
     def check_error_message(self, text):
         self.check_text(self.ERROR_MESSAGE_LOGIN, text)
