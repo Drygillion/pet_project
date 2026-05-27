@@ -7,5 +7,5 @@ allure-results/
 allure-report/
 
 helpers/screenshots/
-
+pip install allure-pytest
 *.pyc
