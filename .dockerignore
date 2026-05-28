@@ -1,0 +1,25 @@
+# Виртуальное окружение
+venv/
+__pycache__/
+*.pyc
+
+# IDE
+.idea/
+.vscode/
+
+# Отчёты и артефакты
+allure-results/
+allure-report/
+helpers/screenshots/*.png
+
+# Docker
+*.tar
+*.tgz
+
+# Git
+.git/
+.gitignore
+
+# Системные файлы
+.DS_Store
+Thumbs.db

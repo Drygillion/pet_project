@@ -6,6 +6,6 @@ __pycache__/
 allure-results/
 allure-report/
 
-helpers/screenshots/
+helpers/screenshots/*.png
 pip install allure-pytest
 *.pyc

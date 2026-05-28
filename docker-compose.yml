@@ -1,0 +1,29 @@
+
+services:
+
+  tests:
+    build: .
+    container_name: pet-project-tests
+
+    volumes:
+      - ./allure-results:/app/allure-results
+
+    command: sh -c "rm -rf /app/allure-results/* /app/allure-report/* && pytest -v --browser=chromium --alluredir=/app/allure-results"
+
+  allure:
+    image: frankescobar/allure-docker-service
+    container_name: allure-server
+
+    ports:
+      - "5050:5050"
+
+    environment:
+      CHECK_RESULTS_EVERY_SECONDS: 3
+      KEEP_HISTORY: 1
+
+    volumes:
+      - ./allure-results:/app/allure-results
+      - ./allure-report:/app/default-reports
+
+    depends_on:
+      - tests
