@@ -67,7 +67,7 @@ def test_remove_item_from_cart(inventory_page):
 @allure.severity(allure.severity_level.CRITICAL)
 def test_cart_price(inventory_page):
     with allure.step(f"Добавить товар '{Product.BACKPACK}' в корзину"):
-        inventory_page.add_to_cart(Product.BACKPAC)
+        inventory_page.add_to_cart(Product.BACKPACK)
 
     with allure.step(f"Получить цену товара '{Product.BIKE_LIGHT}' в каталоге"):
         price_backpack = inventory_page.get_price(Product.BACKPACK_ID)
