@@ -32,6 +32,16 @@ jobs:
       - name: Run tests
         run: |
           pytest -v --browser chromium --alluredir=allure-results
+          
+
+      # Загрузка скриншотов упавших тестов
+      - name: Upload screenshots on failure
+        if: always()  # загружаем даже если тесты упали
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: helpers/screenshots/*.png
+          if-no-files-found: warn  # не падаем, если скриншотов нет
 
       # Установка Java для Allure
       - name: Set up Java

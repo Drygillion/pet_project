@@ -17,7 +17,7 @@ def test_valid_login(inventory_page):
 def test_error_login(login_failed):
     """Сообщение об ошибке при неверном пароле"""
     with allure.step("Проверить сообщение об ошибке"):
-        login_failed.check_error_message("Epic sadface: Username and password do not match any user in this service")
+        login_failed.check_error_message("Epic sadface:  WRONG ERROR MESSAGE")  #"Тест упал намеренно для проверки скриншотов"
 
 @allure.feature("Авторизация")
 @allure.story("Заблокированный пользователь")

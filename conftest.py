@@ -1,5 +1,5 @@
 import pytest
-
+import allure
 from datetime import datetime
 
 from config import BASE_URL
@@ -27,9 +27,16 @@ def pytest_runtest_makereport(item):
                 "%Y-%m-%d_%H-%M-%S"
             )
 
-            page.screenshot(
-                path=f"helpers/screenshots/{item.name}_{timestamp}.png"
-            )
+            screenshot_path = f"helpers/screenshots/{item.name}_{timestamp}.png"
+            page.screenshot(path=screenshot_path)
+
+            # Прикрепляем скриншот к Allure отчёту
+            with open(screenshot_path, "rb") as f:
+                allure.attach(
+                    f.read(),
+                    name=f"screenshot_{item.name}_{timestamp}",
+                    attachment_type=allure.attachment_type.PNG
+                )
 
 @pytest.fixture(scope="session")
 def browser_context_args(browser_context_args):
