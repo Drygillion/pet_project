@@ -7,6 +7,7 @@ from pages.inventory_item_page import InventoryItemPage
 from pages.checkout_page import CheckoutPage
 from pages.login_page import LoginPage
 from pages.products import Product
+import allure
 
 
 @pytest.hookimpl(hookwrapper=True)
@@ -26,11 +27,15 @@ def pytest_runtest_makereport(item):
             timestamp = datetime.now().strftime(
                 "%Y-%m-%d_%H-%M-%S"
             )
+            screenshot_path = f"helpers/screenshots/{item.name}_{timestamp}.png"
+            page.screenshot(path=screenshot_path)
 
-            page.screenshot(
-                path=f"helpers/screenshots/{item.name}_{timestamp}.png"
-            )
-
+            with open(screenshot_path, "rb") as f:
+                allure.attach(
+                    f.read(),
+                    name=f"screenshot_{item.name}_{timestamp}",
+                    attachment_type=allure.attachment_type.PNG
+                )
 @pytest.fixture(scope="session")
 def browser_context_args(browser_context_args):
     return {
