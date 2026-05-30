@@ -10,7 +10,7 @@ class LoginPage(BasePage):
     ERROR_MESSAGE_LOGIN = "[data-test='error']"
 
     def open(self,url):
-        self.page.goto(url, timeout=60000, wait_until="domcontentloaded")
+        self.page.goto(url, timeout=120000)
         self.page.locator('#user-name').wait_for(state="visible", timeout=30000)
 
 
